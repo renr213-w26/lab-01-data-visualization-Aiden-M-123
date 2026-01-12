@@ -72,6 +72,22 @@ The data is strongly skewed to the right. One outlier is Cook County, IL because
 
 ### Question 3
 
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
+) +  geom_point() +
+  labs(
+    x = "Percentage of people with college degree",
+    y = "Percentage of people below poverty",
+    title = "College Education vs Poverty in Midwestern Counties",
+    color = "State",
+    shape = "State"
+ )
+```
+
+A negative relationship between college education and poverty exists. Generally speaking, as the percentage of people with a collage degree increases, the percentage below poverty generally decreases. One outlier is Jackson, IL with 36.6% percollege and 28.4% perbelowpoverty which is higher than other counties with similar education levels.
+
 ### Question 4
 
 ### Question 5
