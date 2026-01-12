@@ -54,13 +54,21 @@ ggplot(midwest, aes(x = popdensity)) +
   )
 ```
 
----
-
 A binwdith of 1000 is likley the most appropriate. It balances smoothness and detail while still showing that the data is right tailed.
 
----
-
 ### Question 2
+
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_boxplot() +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+  )
+```
+
+The data is strongly skewed to the right. One outlier is Cook County, IL because it is significantly larger than the typical county, located on the far right of the x axis as an isolated point.
 
 ### Question 3
 
