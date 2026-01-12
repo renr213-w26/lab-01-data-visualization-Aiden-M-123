@@ -2,13 +2,63 @@
 title: "Lab 1 - Data visualization"
 format: html
 editor: visual
+author: Aiden Mansfield
 ---
 
 # Questions
 
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
 ## Part 1
 
 ### Question 1
+
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 1000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 1000"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 10000"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100000"
+  )
+```
+
+---
+
+A binwdith of 1000 is likley the most appropriate. It balances smoothness and detail while still showing that the data is right tailed.
+
+---
 
 ### Question 2
 
