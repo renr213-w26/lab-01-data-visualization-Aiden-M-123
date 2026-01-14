@@ -108,6 +108,20 @@ I prefer this plot because it's easier to interpret the data by providing cleare
 
 ### Question 5
 
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = state, y = area, color = state, shape = state)
+) +  geom_boxplot() + geom_smooth(se = FALSE) + facet_wrap(~state) + 
+  labs(
+    x = "State",
+    y = "County Area",
+    title = "Distribution of County Area by State",
+)
+```
+
+Typical county sizes are largest in Michigan and smallest in Ohio. Illinois, Indiana, and Wisconsin are somewhere in between. Variability in county size is greatest in Michigan and smallest in Ohio. Wisconsin shows more spread than Illinois or Indiana. The largest county is Marquette in Michigan with an area of 0.110.
+
 ### Question 6
 
 ### Question 7
