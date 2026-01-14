@@ -176,6 +176,26 @@ One clear outleir is Menominee, WI with 48.69% below poverty and 7.34 college ed
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
+
+I would guess the relationship between population density and land area is likely negative where when land area increases and population remains constant, density decreases.
+
+```{r}
+ggplot(
+  data = nc_county,
+  mapping =aes(x = land_area_mi2, y = density)
+) +  geom_point() +
+  labs(
+    x = "Land Area in Square Miles",
+    y = "Population Density",
+    title = "Population Denstiy vs Land Area in North Carolina Counties",
+ )
+```
+
+Yes, my guess was mostly correct. THis plot confirms the negative relationship but it is weak and likely driven by a few dense urban counties rather than uniformity across all counties.
 
 ### Question 9
