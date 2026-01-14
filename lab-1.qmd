@@ -124,6 +124,23 @@ Typical county sizes are largest in Michigan and smallest in Ohio. Illinois, Ind
 
 ### Question 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+ggplot(
+  data = midwest,
+  mapping =aes(x = state, fill = metro)
+) +  geom_bar(position = "fill") +
+  labs(
+    x = "State",
+    y = "Proportion of Counties",
+    title = "Proportion of Metro and Non-Metro Counties by State",
+    fill = "Metro Area",
+)
+```
+
+All five states contain predominantly non-metro areas. Ohio contains the largest proportion of metro counties at just below 0.5. Indiana is next with roughly 0.45, then Michigan around 0.30, and both Illinois and Wisconsin just above 0.25.
+
 ### Question 7
 
 ## Part 2
