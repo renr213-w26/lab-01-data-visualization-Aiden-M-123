@@ -90,6 +90,22 @@ A negative relationship between college education and poverty exists. Generally 
 
 ### Question 4
 
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
+) +  geom_point() + geom_smooth(se = FALSE) + facet_wrap(~state) + 
+  labs(
+    x = "Percentage of people with college degree",
+    y = "Percentage of people below poverty",
+    title = "College Education vs Poverty in Midwestern Counties",
+    color = "State",
+    shape = "State"
+ )
+```
+
+I prefer this plot because it's easier to interpret the data by providing clearer breakdowns by state.
+
 ### Question 5
 
 ### Question 6
