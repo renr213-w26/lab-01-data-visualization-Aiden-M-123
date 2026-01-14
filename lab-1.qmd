@@ -143,6 +143,35 @@ All five states contain predominantly non-metro areas. Ohio contains the largest
 
 ### Question 7
 
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, fill = percwhite)) +
+  geom_point(shape = 21, color = "#55aff5", size = 2, alpha = 0.5) +
+  facet_wrap(~ state) +
+  scale_fill_gradient(
+    low = "#142d46",
+    high = "#55aff5",
+    name = "% White"
+  ) +
+  labs(
+    x = "% College Educated",
+    y = "% Below Poverty Line",
+    title = "College Education vs. Poverty by State"
+  ) +
+  theme_grey(
+    base_size = 11,
+    base_family = "",
+    header_family = NULL,
+    base_line_size = 11 / 22,
+    base_rect_size = 11 / 22,
+    ink = "black",
+    paper = "white",
+    accent = "#55aff5"
+  )
+
+```
+
+One clear outleir is Menominee, WI with 48.69% below poverty and 7.34 college educated. The population is predominantly Amerindian (3469) followed by white (416), then other (5).
+
 ## Part 2
 
 **Enough about the Midwest!**
