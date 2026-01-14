@@ -1,6 +1,6 @@
 ---
 title: "Lab 1 - Data visualization"
-format: html
+format: pdf
 editor: visual
 author: Aiden Mansfield
 ---
@@ -199,3 +199,17 @@ ggplot(
 Yes, my guess was mostly correct. THis plot confirms the negative relationship but it is weak and likely driven by a few dense urban counties rather than uniformity across all counties.
 
 ### Question 9
+
+```{r}
+ggplot(
+  data = nc_county,
+  mapping =aes(x = land_area_m2, y = density)
+) +  geom_point() +
+  labs(
+    x = "Land Area in Square Metres",
+    y = "Population Density",
+    title = "Population Denstiy vs Land Area in North Carolina Counties",
+ )
+```
+
+The relationship appears the same. This is because the units have changed but not the underlying land area values. The plot has been rescaled but the relationship does not change.
