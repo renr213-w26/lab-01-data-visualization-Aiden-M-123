@@ -2,7 +2,7 @@
 title: "Lab 1 - Data visualization"
 format: pdf
 editor: visual
-author: Aiden Mansfield
+author: Aiden
 ---
 
 # Questions
@@ -59,16 +59,16 @@ A binwdith of 1000 is likley the most appropriate. It balances smoothness and de
 ### Question 2
 
 ```{r}
-ggplot(midwest, aes(x = popdensity)) +
+ggplot(midwest, aes(x = popdensity, )) +
   geom_boxplot() +
   labs(
-    x = "Population density",
-    y = "Count",
-    title = "Population density of midwesten counties",
+    x = "Population Density",
+    y = "Midwest Counties",
+    title = "Population Density of Midwesten Counties",
   )
 ```
 
-The data is strongly skewed to the right. One outlier is Cook County, IL because it is significantly larger than the typical county, located on the far right of the x axis as an isolated point.
+The data is strongly skewed to the right. Most counties have a low density. One outlier is Cook County, IL because it is significantly larger than the typical county, located on the far right of the x axis as an isolated point.
 
 ### Question 3
 
@@ -78,15 +78,15 @@ ggplot(
   mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
 ) +  geom_point() +
   labs(
-    x = "Percentage of people with college degree",
-    y = "Percentage of people below poverty",
+    x = "Percentage of People with College Degree",
+    y = "Percentage of People Below Poverty",
     title = "College Education vs Poverty in Midwestern Counties",
     color = "State",
     shape = "State"
  )
 ```
 
-A negative relationship between college education and poverty exists. Generally speaking, as the percentage of people with a collage degree increases, the percentage below poverty generally decreases. One outlier is Jackson, IL with 36.6% percollege and 28.4% perbelowpoverty which is higher than other counties with similar education levels.
+A negative relationship between college education and poverty exists. Generally speaking, as the percentage of people with a collage degree increases, the percentage below poverty generally decreases. The negative trend appears consistent across states with the exception of some states showing more variability at higher education levels. One outlier is Jackson, IL with 36.6% percollege and 28.4% perbelowpoverty which is higher than other counties with similar education levels.
 
 ### Question 4
 
@@ -96,8 +96,8 @@ ggplot(
   mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
 ) +  geom_point() + geom_smooth(se = FALSE) + facet_wrap(~state) + 
   labs(
-    x = "Percentage of people with college degree",
-    y = "Percentage of people below poverty",
+    x = "Percentage of People with College Degree",
+    y = "Percentage of People Below Poverty",
     title = "College Education vs Poverty in Midwestern Counties",
     color = "State",
     shape = "State"
@@ -111,8 +111,8 @@ I prefer this plot because it's easier to interpret the data by providing cleare
 ```{r}
 ggplot(
   data = midwest,
-  mapping =aes(x = state, y = area, color = state, shape = state)
-) +  geom_boxplot() + geom_smooth(se = FALSE) + facet_wrap(~state) + 
+  mapping =aes(x = state, y = area)
+) +  geom_boxplot() + 
   labs(
     x = "State",
     y = "County Area",
@@ -133,7 +133,7 @@ ggplot(
 ) +  geom_bar(position = "fill") +
   labs(
     x = "State",
-    y = "Proportion of Counties",
+    y = "Proportion in Metro Area",
     title = "Proportion of Metro and Non-Metro Counties by State",
     fill = "Metro Area",
 )
@@ -170,7 +170,7 @@ ggplot(midwest, aes(x = percollege, y = percbelowpoverty, fill = percwhite)) +
 
 ```
 
-One clear outleir is Menominee, WI with 48.69% below poverty and 7.34 college educated. The population is predominantly Amerindian (3469) followed by white (416), then other (5).
+One clear outlier is Menominee, WI with 48.69% below poverty and 7.34% college educated. The population is predominantly Amerindian (3469) followed by white (416), then other (5).
 
 ## Part 2
 
@@ -196,7 +196,7 @@ ggplot(
  )
 ```
 
-Yes, my guess was mostly correct. THis plot confirms the negative relationship but it is weak and likely driven by a few dense urban counties rather than uniformity across all counties.
+Yes, my guess was mostly correct. This plot confirms the negative relationship but it is weak and likely driven by a few dense urban counties rather than uniformity across all counties.
 
 ### Question 9
 
@@ -212,4 +212,7 @@ ggplot(
  )
 ```
 
-The relationship appears the same. This is because the units have changed but not the underlying land area values. The plot has been rescaled but the relationship does not change.
+The relationship appears the same. This is because the units have changed but not the underlying land area values. The plot has been re scaled but the underlying relationship does not change.
+
+```         
+```
