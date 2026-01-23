@@ -1,31 +1,218 @@
 ---
 title: "Lab 1 - Data visualization"
-format: html
+format: pdf
 editor: visual
+author: Aiden
 ---
 
 # Questions
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
 
 ## Part 1
 
 ### Question 1
 
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 1000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 1000"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 10000"
+  )
+
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100000"
+  )
+```
+
+A binwdith of 1000 is likley the most appropriate. It balances smoothness and detail while still showing that the data is right tailed.
+
 ### Question 2
+
+```{r}
+ggplot(midwest, aes(x = popdensity, )) +
+  geom_boxplot() +
+  labs(
+    x = "Population Density",
+    y = "Midwest Counties",
+    title = "Population Density of Midwesten Counties",
+  )
+```
+
+The data is strongly skewed to the right. Most counties have a low density. One outlier is Cook County, IL because it is significantly larger than the typical county, located on the far right of the x axis as an isolated point.
 
 ### Question 3
 
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
+) +  geom_point() +
+  labs(
+    x = "Percentage of People with College Degree",
+    y = "Percentage of People Below Poverty",
+    title = "College Education vs Poverty in Midwestern Counties",
+    color = "State",
+    shape = "State"
+ )
+```
+
+A negative relationship between college education and poverty exists. Generally speaking, as the percentage of people with a collage degree increases, the percentage below poverty generally decreases. The negative trend appears consistent across states with the exception of some states showing more variability at higher education levels. One outlier is Jackson, IL with 36.6% percollege and 28.4% perbelowpoverty which is higher than other counties with similar education levels.
+
 ### Question 4
+
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = percollege, y = percbelowpoverty, color = state, shape = state)
+) +  geom_point() + geom_smooth(se = FALSE) + facet_wrap(~state) + 
+  labs(
+    x = "Percentage of People with College Degree",
+    y = "Percentage of People Below Poverty",
+    title = "College Education vs Poverty in Midwestern Counties",
+    color = "State",
+    shape = "State"
+ )
+```
+
+I prefer this plot because it's easier to interpret the data by providing clearer breakdowns by state.
 
 ### Question 5
 
+```{r}
+ggplot(
+  data = midwest,
+  mapping =aes(x = state, y = area)
+) +  geom_boxplot() + 
+  labs(
+    x = "State",
+    y = "County Area",
+    title = "Distribution of County Area by State",
+)
+```
+
+Typical county sizes are largest in Michigan and smallest in Ohio. Illinois, Indiana, and Wisconsin are somewhere in between. Variability in county size is greatest in Michigan and smallest in Ohio. Wisconsin shows more spread than Illinois or Indiana. The largest county is Marquette in Michigan with an area of 0.110.
+
 ### Question 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+ggplot(
+  data = midwest,
+  mapping =aes(x = state, fill = metro)
+) +  geom_bar(position = "fill") +
+  labs(
+    x = "State",
+    y = "Proportion in Metro Area",
+    title = "Proportion of Metro and Non-Metro Counties by State",
+    fill = "Metro Area",
+)
+```
+
+All five states contain predominantly non-metro areas. Ohio contains the largest proportion of metro counties at just below 0.5. Indiana is next with roughly 0.45, then Michigan around 0.30, and both Illinois and Wisconsin just above 0.25.
+
 ### Question 7
+
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, fill = percwhite)) +
+  geom_point(shape = 21, color = "#55aff5", size = 2, alpha = 0.5) +
+  facet_wrap(~ state) +
+  scale_fill_gradient(
+    low = "#142d46",
+    high = "#55aff5",
+    name = "% White"
+  ) +
+  labs(
+    x = "% College Educated",
+    y = "% Below Poverty Line",
+    title = "College Education vs. Poverty by State"
+  ) +
+  theme_grey(
+    base_size = 11,
+    base_family = "",
+    header_family = NULL,
+    base_line_size = 11 / 22,
+    base_rect_size = 11 / 22,
+    ink = "black",
+    paper = "white",
+    accent = "#55aff5"
+  )
+
+```
+
+One clear outlier is Menominee, WI with 48.69% below poverty and 7.34% college educated. The population is predominantly Amerindian (3469) followed by white (416), then other (5).
 
 ## Part 2
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
 
+I would guess the relationship between population density and land area is likely negative where when land area increases and population remains constant, density decreases.
+
+```{r}
+ggplot(
+  data = nc_county,
+  mapping =aes(x = land_area_mi2, y = density)
+) +  geom_point() +
+  labs(
+    x = "Land Area in Square Miles",
+    y = "Population Density",
+    title = "Population Denstiy vs Land Area in North Carolina Counties",
+ )
+```
+
+Yes, my guess was mostly correct. This plot confirms the negative relationship but it is weak and likely driven by a few dense urban counties rather than uniformity across all counties.
+
 ### Question 9
+
+```{r}
+ggplot(
+  data = nc_county,
+  mapping =aes(x = land_area_m2, y = density)
+) +  geom_point() +
+  labs(
+    x = "Land Area in Square Metres",
+    y = "Population Density",
+    title = "Population Denstiy vs Land Area in North Carolina Counties",
+ )
+```
+
+The relationship appears the same. This is because the units have changed but not the underlying land area values. The plot has been re scaled but the underlying relationship does not change.
+
+```         
+```
